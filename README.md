@@ -31,3 +31,11 @@ source myvenv/bin/activate
 - Copy .env.sample rename it to .env and populate with all required data
 - Run migrations to initialize database: ```python manage.py migrate```
 - Run the server of app ```python manage.py runserver```
+![created](https://github.com/AnnaKabatova/mojob-be-test/assets/80786573/adf1d765-e4aa-4dcb-8f25-624df7cc89f2)
+![deleted](https://github.com/AnnaKabatova/mojob-be-test/assets/80786573/ef257d4d-ba98-4d7c-b11a-4f875599152b)
+![job_created](https://github.com/AnnaKabatova/mojob-be-test/assets/80786573/48c79f4b-147f-4f48-aa46-9c9a7e02eb2f)
+![list-create page](https://github.com/AnnaKabatova/mojob-be-test/assets/80786573/cb9e06c1-6b8f-486e-8dec-90da94ad694f)
+![not authenticated](https://github.com/AnnaKabatova/mojob-be-test/assets/80786573/5f5444b9-93cb-4869-a29c-b26e4c361881)
+![token page](https://github.com/AnnaKabatova/mojob-be-test/assets/80786573/ab5c88aa-816b-4f99-87e4-97ccf3973445)
+![update_page](https://github.com/AnnaKabatova/mojob-be-test/assets/80786573/96e332b2-8606-4348-a2b5-69cef940522e)
+![user_applications](https://github.com/AnnaKabatova/mojob-be-test/assets/80786573/f22307e1-0424-4282-884c-37ec275e8d13)
