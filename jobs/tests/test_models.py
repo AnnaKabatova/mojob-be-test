@@ -37,15 +37,19 @@ class JobHeaderModelTest(TestCase):
         self.job_header = JobHeader.objects.create(
             job=self.job,
             rich_title_text="Rich title text",
-            rich_subtitle_text="Rich subtitle text"
+            rich_subtitle_text="Rich subtitle text",
         )
 
     def test_rich_title_text_label(self):
-        field_label = self.job_header._meta.get_field("rich_title_text").verbose_name
+        field_label = self.job_header._meta.get_field(
+            "rich_title_text"
+        ).verbose_name
         self.assertEqual(field_label, "rich title text")
 
     def test_rich_subtitle_text_label(self):
-        field_label = self.job_header._meta.get_field("rich_subtitle_text").verbose_name
+        field_label = self.job_header._meta.get_field(
+            "rich_subtitle_text"
+        ).verbose_name
         self.assertEqual(field_label, "rich subtitle text")
 
     def test_object_name_is_rich_title_text(self):
@@ -56,8 +60,8 @@ class JobHeaderModelTest(TestCase):
 class ApplicationModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
-            username='testuser',
-            password='12345'
+            username="testuser",
+            password="12345"
         )
         self.job = Job.objects.create(
             name="Job name",
