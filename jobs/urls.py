@@ -1,19 +1,16 @@
-from django.urls import path
+from django.urls import path, include
 from .views import (
-    CreateJobWithHeaderView,
-    UpdateJobWithHeaderView,
-    DeleteJobWithHeaderView,
-    GetJobWithSerializedHeaderView,
+    JobWithHeaderViewSet,
     GetUserApplicationsView
 )
+from rest_framework.routers import SimpleRouter
 
+router = SimpleRouter()
+router.register("jobs", JobWithHeaderViewSet, basename="jobs")
 
 app_name = "jobs"
 
 urlpatterns = [
-    path('jobs/', CreateJobWithHeaderView.as_view(), name='create_job'),
-    path('jobs/<int:pk>/', UpdateJobWithHeaderView.as_view(), name='update_job'),
-    path('jobs/<int:pk>/delete/', DeleteJobWithHeaderView.as_view(), name='delete_job'),
-    path('jobs/<int:pk>/header/', GetJobWithSerializedHeaderView.as_view(), name='get_job_header'),
+    path("", include(router.urls)),
     path('users/<int:user_id>/applications/', GetUserApplicationsView.as_view(), name='get_user_applications'),
 ]
