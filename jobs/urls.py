@@ -1,6 +1,7 @@
-from django.urls import path, include
-from .views import JobWithHeaderViewSet, GetUserApplicationsView
+from django.urls import include, path
 from rest_framework.routers import SimpleRouter
+
+from .views import GetUserApplicationsView, JobWithHeaderViewSet
 
 router = SimpleRouter()
 router.register("jobs", JobWithHeaderViewSet, basename="jobs")

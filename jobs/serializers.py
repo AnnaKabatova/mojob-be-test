@@ -1,6 +1,7 @@
-from rest_framework import serializers
-from .models import Job, JobHeader, Application
 from django.utils.html import strip_tags
+from rest_framework import serializers
+
+from .models import Application, Job, JobHeader
 
 
 class JobHeaderSerializer(serializers.ModelSerializer):
