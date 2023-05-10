@@ -32,7 +32,9 @@ class JobWithHeaderViewSet(ModelViewSet):
         header_serializer.save(job=job)
 
         send_job_updated_email(
-            job.id, job.header.rich_title_text, header_data.get("rich_title_text")
+            job.id,
+            job.header.rich_title_text,
+            header_data.get("rich_title_text")
         )
 
         return Response(

@@ -12,13 +12,23 @@ class Job(models.Model):
 
 
 class JobHeader(models.Model):
-    job = models.OneToOneField(Job, on_delete=models.CASCADE, related_name="header")
+    job = models.OneToOneField(
+        Job,
+        on_delete=models.CASCADE,
+        related_name="header"
+    )
     rich_title_text = models.TextField()
     rich_subtitle_text = models.TextField()
 
 
 class Application(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="applications"
+        User,
+        on_delete=models.CASCADE,
+        related_name="applications"
     )
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="applications")
+    job = models.ForeignKey(
+        Job,
+        on_delete=models.CASCADE,
+        related_name="applications"
+    )
