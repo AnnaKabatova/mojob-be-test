@@ -3,10 +3,14 @@ from rest_framework.response import Response
 from .models import Job, Application
 from .serializers import JobSerializer, ApplicationSerializer, JobHeaderSerializer
 from .utils import send_job_created_email, send_job_updated_email
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import JWTAuthentication
 
 
 class CreateJobWithHeaderView(generics.CreateAPIView):
     serializer_class = JobSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def perform_create(self, serializer):
         job = serializer.save()
@@ -24,6 +28,8 @@ class CreateJobWithHeaderView(generics.CreateAPIView):
 class UpdateJobWithHeaderView(generics.UpdateAPIView):
     serializer_class = JobSerializer
     queryset = Job.objects.all()
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def perform_update(self, serializer):
         job = serializer.save()
@@ -40,6 +46,8 @@ class UpdateJobWithHeaderView(generics.UpdateAPIView):
 
 class DeleteJobWithHeaderView(generics.DestroyAPIView):
     queryset = Job.objects.all()
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def perform_destroy(self, instance):
         send_job_updated_email(instance.id, instance.header.rich_title_text, "Job Deleted")
@@ -53,10 +61,14 @@ class DeleteJobWithHeaderView(generics.DestroyAPIView):
 class GetJobWithSerializedHeaderView(generics.RetrieveAPIView):
     serializer_class = JobSerializer
     queryset = Job.objects.all()
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
 
 class GetUserApplicationsView(generics.ListAPIView):
     serializer_class = ApplicationSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
         user_id = self.kwargs['user_id']
