@@ -20,21 +20,18 @@ class JobWithHeaderViewSet(ModelViewSet):
 
     def perform_update(self, serializer):
         job = serializer.save()
-        header_data = self.request.data.get('header')
+        header_data = self.request.data.get("header")
         header_serializer = JobHeaderSerializer(job.header, data=header_data)
 
         if header_serializer.is_valid():
             header_serializer.save(job=job)
 
         send_job_updated_email(
-            job.id,
-            job.header.rich_title_text,
-            header_data.get('rich_title_text')
+            job.id, job.header.rich_title_text, header_data.get("rich_title_text")
         )
 
         return Response(
-            "Job with header updated successfully",
-            status=status.HTTP_200_OK
+            "Job with header updated successfully", status=status.HTTP_200_OK
         )
 
 
@@ -44,7 +41,7 @@ class GetUserApplicationsView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
-        user_id = self.kwargs['user_id']
+        user_id = self.kwargs["user_id"]
         return Application.objects.filter(user_id=user_id)
 
     def list(self, request, *args, **kwargs):

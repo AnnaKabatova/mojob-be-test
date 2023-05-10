@@ -11,11 +11,7 @@ class JobHeaderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JobHeader
-        fields = [
-            "rich_title_text",
-            "rich_subtitle_text",
-            "plain_title_text"
-        ]
+        fields = ["rich_title_text", "rich_subtitle_text", "plain_title_text"]
 
 
 class JobSerializer(serializers.ModelSerializer):
@@ -26,15 +22,15 @@ class JobSerializer(serializers.ModelSerializer):
         fields = ["id", "name", "type", "header"]
 
     def create(self, validated_data):
-        job_header_data = validated_data.pop('header', None)
+        job_header_data = validated_data.pop("header", None)
         job = Job.objects.create(**validated_data)
         if job_header_data:
             JobHeader.objects.create(job=job, **job_header_data)
         return job
 
     def update(self, instance, validated_data):
-        job_header_data = validated_data.pop('header', {})
-        job_header_serializer = self.fields['header']
+        job_header_data = validated_data.pop("header", {})
+        job_header_serializer = self.fields["header"]
         job_header_serializer.update(instance.header, job_header_data)
         return super().update(instance, validated_data)
 

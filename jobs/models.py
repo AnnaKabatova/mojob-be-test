@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 
 
 class Job(models.Model):
-    TYPES_CHOICES = (
-        ("full-time", "Full Time"),
-        ("part-time", "Part Time")
-    )
+    class JobTypes(models.TextChoices):
+        FULL_TIME = "full-time", "Full Time"
+        PART_TIME = "part-time", "Part Time"
+
     name = models.CharField(max_length=255)
-    type = models.CharField(max_length=20, choices=TYPES_CHOICES)
+    type = models.CharField(max_length=20, choices=JobTypes.choices)
 
 
 class JobHeader(models.Model):
@@ -18,5 +18,7 @@ class JobHeader(models.Model):
 
 
 class Application(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='applications')
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="applications"
+    )
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="applications")
